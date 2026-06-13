@@ -5,11 +5,22 @@
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
 html { scroll-behavior: smooth; }
-body { background-color: #0a0a0f; color: #f8fafc; font-family: 'Inter', sans-serif; overflow-x: hidden; }
+body {
+  background-color: white;
+  color: #0a0a0f;
+  font-family: 'Inter', sans-serif;
+  overflow-x: hidden;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+html.dark body {
+  background-color: #0a0a0f;
+  color: #f8fafc;
+}
 
 .section-fade { opacity: 0; transform: translateY(40px); transition: all 0.7s ease; }
 .section-fade.visible { opacity: 1; transform: translateY(0); }
 
 ::-webkit-scrollbar { width: 4px; }
-::-webkit-scrollbar-track { background: #0a0a0f; }
-::-webkit-scrollbar-thumb { background: #2dd4bf; border-radius: 2px; }
+::-webkit-scrollbar-track { @apply bg-white dark:bg-[#0a0a0f]; }
+::-webkit-scrollbar-thumb { @apply bg-[#2dd4bf] rounded-2xl; }

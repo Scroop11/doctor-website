@@ -6,7 +6,7 @@ const MarqueeTicker = () => {
   const tickerText = t.ticker;
 
   return (
-    <div className="bg-[#16161f] border-y border-[#1e1e2e] py-4 overflow-hidden select-none">
+    <div className="bg-gray-50 dark:bg-[#16161f] border-y border-gray-100 dark:border-[#1e1e2e] py-4 overflow-hidden select-none transition-colors duration-300">
       <div className="flex animate-marquee whitespace-nowrap">
         {/* First set of text */}
         <div className="flex items-center">
@@ -14,7 +14,7 @@ const MarqueeTicker = () => {
             <div key={i} className="flex items-center">
               {tickerText.split(' · ').map((text, idx) => (
                 <span key={idx} className="flex items-center">
-                  <span className="text-[#94a3b8] text-sm uppercase tracking-widest font-medium">
+                  <span className="text-[#4b5563] dark:text-[#94a3b8] text-sm uppercase tracking-widest font-medium">
                     {text}
                   </span>
                   <span className="text-[#2dd4bf] font-bold mx-8 text-lg">·</span>
@@ -30,7 +30,7 @@ const MarqueeTicker = () => {
             <div key={i} className="flex items-center">
               {tickerText.split(' · ').map((text, idx) => (
                 <span key={idx} className="flex items-center">
-                  <span className="text-[#94a3b8] text-sm uppercase tracking-widest font-medium">
+                  <span className="text-[#4b5563] dark:text-[#94a3b8] text-sm uppercase tracking-widest font-medium">
                     {text}
                   </span>
                   <span className="text-[#2dd4bf] font-bold mx-8 text-lg">·</span>

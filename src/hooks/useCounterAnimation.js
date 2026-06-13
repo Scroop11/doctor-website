@@ -7,7 +7,7 @@ export const useCounterAnimation = (end, isVisible, duration = 2000, start = 0) 
   useEffect(() => {
     if (!isVisible || hasRun) return
 
-    let startTimestamp = null
+    let animationFrameId = null;
     const endValue = typeof end === 'string' ? parseInt(end.replace(/\D/g, '')) : end
 
     const step = (timestamp) => {
@@ -18,13 +18,19 @@ export const useCounterAnimation = (end, isVisible, duration = 2000, start = 0) 
       setCount(currentCount)
 
       if (progress < 1) {
-        window.requestAnimationFrame(step)
+        animationFrameId = window.requestAnimationFrame(step)
       } else {
         setHasRun(true)
       }
     }
 
-    window.requestAnimationFrame(step)
+    animationFrameId = window.requestAnimationFrame(step)
+    
+    return () => {
+      if (animationFrameId) {
+        window.cancelAnimationFrame(animationFrameId);
+      }
+    };
   }, [end, isVisible, duration, start, hasRun])
 
   return count

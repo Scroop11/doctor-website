@@ -1,15 +1,23 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Upload, Download, Search, CheckCircle, FileText, Loader2, AlertCircle } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
+import { useAuth } from '../context/AuthContext';
 
 const PrescriptionSystem = () => {
   const { t } = useLanguage();
-  const [patientId, setPatientId] = useState('');
+  const { patientId: authPatientId } = useAuth();
+  const [patientId, setPatientId] = useState(authPatientId || '');
   const [isSearching, setIsSearching] = useState(false);
   const [searchError, setSearchError] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
+
+  useEffect(() => {
+    if (authPatientId) {
+      setPatientId(authPatientId);
+    }
+  }, [authPatientId]);
 
   const handleDownload = async (e) => {
     e.preventDefault();
@@ -44,10 +52,10 @@ const PrescriptionSystem = () => {
     setTimeout(() => setIsSuccess(false), 5000);
   };
 
-  const fieldClasses = "w-full bg-[#0a0a0f] border border-[#1e1e2e] rounded-xl px-4 py-3 text-white focus:border-[#2dd4bf] focus:outline-none transition-colors placeholder:text-[#4b5563]";
+  const fieldClasses = "w-full bg-white dark:bg-[#0a0a0f] border border-gray-200 dark:border-[#1e1e2e] rounded-xl px-4 py-3 text-[#0a0a0f] dark:text-white focus:border-[#2dd4bf] focus:outline-none transition-colors placeholder:text-[#94a3b8]";
 
   return (
-    <section id="prescriptions" className="py-24 px-4 sm:px-6 lg:px-8 bg-primary border-t border-[#1e1e2e]">
+    <section id="prescriptions" className="py-24 px-4 sm:px-6 lg:px-8 bg-white dark:bg-primary border-t border-gray-100 dark:border-[#1e1e2e] transition-colors duration-300">
       <div className="max-w-7xl mx-auto">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-20">
           
@@ -62,26 +70,26 @@ const PrescriptionSystem = () => {
               <span className="text-[#2dd4bf] text-sm font-bold uppercase tracking-[0.2em]">
                 {t.prescription.consultation.badge}
               </span>
-              <h2 className="text-4xl font-heading font-bold text-white leading-tight">
+              <h2 className="text-4xl font-heading font-bold text-[#0a0a0f] dark:text-white leading-tight">
                 {t.prescription.consultation.title}
               </h2>
-              <p className="text-[#94a3b8] text-lg">
+              <p className="text-[#4b5563] dark:text-[#94a3b8] text-lg">
                 {t.prescription.consultation.subtitle}
               </p>
             </div>
 
-            <div className="bg-[#111118] border border-[#1e1e2e] p-8 rounded-3xl relative overflow-hidden">
+            <div className="bg-gray-50 dark:bg-[#111118] border border-gray-100 dark:border-[#1e1e2e] p-8 rounded-3xl relative overflow-hidden shadow-xl dark:shadow-none">
               {isSuccess ? (
                 <div className="flex flex-col items-center justify-center py-8 text-center space-y-4">
                   <div className="bg-[#2dd4bf]/10 p-4 rounded-full">
                     <CheckCircle className="text-[#2dd4bf]" size={48} />
                   </div>
-                  <h3 className="text-2xl font-bold text-white">{t.prescription.consultation.success}</h3>
+                  <h3 className="text-2xl font-bold text-[#0a0a0f] dark:text-white">{t.prescription.consultation.success}</h3>
                 </div>
               ) : (
                 <form onSubmit={handleSubmitConsultation} className="space-y-6">
                   <div className="space-y-2">
-                    <label className="text-white font-medium text-sm">{t.prescription.consultation.symptoms}</label>
+                    <label className="text-[#0a0a0f] dark:text-white font-medium text-sm">{t.prescription.consultation.symptoms}</label>
                     <textarea 
                       rows={4}
                       className={fieldClasses}
@@ -91,14 +99,14 @@ const PrescriptionSystem = () => {
                   </div>
 
                   <div className="space-y-2">
-                    <label className="text-white font-medium text-sm">{t.prescription.consultation.attachments}</label>
+                    <label className="text-[#0a0a0f] dark:text-white font-medium text-sm">{t.prescription.consultation.attachments}</label>
                     <div className="relative group">
                       <input 
                         type="file" 
                         className="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10"
                         multiple
                       />
-                      <div className="border-2 border-dashed border-[#1e1e2e] group-hover:border-[#2dd4bf] rounded-xl p-8 transition-colors flex flex-col items-center gap-3">
+                      <div className="border-2 border-dashed border-gray-100 dark:border-[#1e1e2e] group-hover:border-[#2dd4bf] rounded-xl p-8 transition-colors flex flex-col items-center gap-3">
                         <Upload className="text-[#94a3b8] group-hover:text-[#2dd4bf] transition-colors" size={32} />
                         <span className="text-[#94a3b8] text-sm">{t.prescription.consultation.attachments}</span>
                       </div>
@@ -108,7 +116,7 @@ const PrescriptionSystem = () => {
                   <button 
                     type="submit"
                     disabled={isSubmitting}
-                    className="w-full bg-[#2dd4bf] text-[#0a0a0f] font-bold py-4 rounded-xl hover:bg-[#14b8a6] transition-all flex items-center justify-center gap-2 disabled:opacity-70"
+                    className="w-full bg-[#2dd4bf] text-[#0a0a0f] font-bold py-4 rounded-xl hover:bg-[#14b8a6] transition-all flex items-center justify-center gap-2 disabled:opacity-70 shadow-lg shadow-[#2dd4bf]/20"
                   >
                     {isSubmitting ? <Loader2 className="animate-spin" size={20} /> : <FileText size={20} />}
                     {t.prescription.consultation.submit}
@@ -129,15 +137,15 @@ const PrescriptionSystem = () => {
               <span className="text-[#2dd4bf] text-sm font-bold uppercase tracking-[0.2em]">
                 {t.prescription.download.badge}
               </span>
-              <h2 className="text-4xl font-heading font-bold text-white leading-tight">
+              <h2 className="text-4xl font-heading font-bold text-[#0a0a0f] dark:text-white leading-tight">
                 {t.prescription.download.title}
               </h2>
-              <p className="text-[#94a3b8] text-lg">
+              <p className="text-[#4b5563] dark:text-[#94a3b8] text-lg">
                 {t.prescription.download.subtitle}
               </p>
             </div>
 
-            <div className="bg-[#111118] border border-[#1e1e2e] p-8 rounded-3xl">
+            <div className="bg-gray-50 dark:bg-[#111118] border border-gray-100 dark:border-[#1e1e2e] p-8 rounded-3xl shadow-xl dark:shadow-none">
               <form onSubmit={handleDownload} className="space-y-6">
                 <div className="space-y-4">
                   <div className="relative">
@@ -156,7 +164,7 @@ const PrescriptionSystem = () => {
                     <motion.div 
                       initial={{ opacity: 0, y: -10 }}
                       animate={{ opacity: 1, y: 0 }}
-                      className="bg-red-500/10 border border-red-500/20 text-red-400 p-4 rounded-xl flex items-center gap-3 text-sm"
+                      className="bg-red-500/10 border border-red-500/20 text-red-500 dark:text-red-400 p-4 rounded-xl flex items-center gap-3 text-sm"
                     >
                       <AlertCircle size={18} />
                       {searchError}
@@ -167,19 +175,19 @@ const PrescriptionSystem = () => {
                 <button 
                   type="submit"
                   disabled={isSearching}
-                  className="w-full bg-white text-[#0a0a0f] font-bold py-4 rounded-xl hover:bg-gray-200 transition-all flex items-center justify-center gap-2 disabled:opacity-70"
+                  className="w-full bg-[#2dd4bf] text-[#0a0a0f] font-bold py-4 rounded-xl hover:bg-[#14b8a6] transition-all flex items-center justify-center gap-2 disabled:opacity-70 shadow-lg shadow-[#2dd4bf]/20"
                 >
                   {isSearching ? <Loader2 className="animate-spin" size={20} /> : <Download size={20} />}
                   {t.prescription.download.button}
                 </button>
 
-                <div className="pt-6 border-t border-[#1e1e2e]">
-                  <div className="flex items-center gap-4 p-4 rounded-2xl bg-[#0a0a0f] border border-[#1e1e2e]">
+                <div className="pt-6 border-t border-gray-100 dark:border-[#1e1e2e]">
+                  <div className="flex items-center gap-4 p-4 rounded-2xl bg-gray-50 dark:bg-[#0a0a0f] border border-gray-100 dark:border-[#1e1e2e]">
                     <div className="bg-[#2dd4bf]/10 p-2.5 rounded-lg">
                       <AlertCircle className="text-[#2dd4bf]" size={20} />
                     </div>
-                    <div className="text-xs text-[#94a3b8] leading-relaxed">
-                      For testing, use ID: <span className="text-white font-mono">P-12345</span>
+                    <div className="text-xs text-[#4b5563] dark:text-[#94a3b8] leading-relaxed">
+                      {t.nav.testId} <span className="text-[#0a0a0f] dark:text-white font-mono">{authPatientId || 'P-12345'}</span>
                     </div>
                   </div>
                 </div>

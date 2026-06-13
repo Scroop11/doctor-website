@@ -7,11 +7,11 @@ const StatItem = ({ end, suffix, label, isVisible, showDivider }) => {
   const count = useCounterAnimation(end, isVisible);
 
   return (
-    <div className={`relative flex flex-col items-center text-center px-4 ${showDivider ? 'lg:border-r border-[#1e1e2e]' : ''}`}>
+    <div className={`relative flex flex-col items-center text-center px-4 ${showDivider ? 'lg:border-r border-gray-100 dark:border-[#1e1e2e]' : ''}`}>
       <div className="text-5xl font-bold text-[#2dd4bf] mb-2 tabular-nums">
         {count}{suffix}
       </div>
-      <div className="text-[#94a3b8] text-sm font-bold uppercase tracking-widest mt-2">
+      <div className="text-[#4b5563] dark:text-[#94a3b8] text-sm font-bold uppercase tracking-widest mt-2">
         {label}
       </div>
     </div>
@@ -54,7 +54,7 @@ const Stats = () => {
   return (
     <section 
       ref={sectionRef}
-      className="py-20 bg-[#111118] border-y border-[#1e1e2e] px-4"
+      className="py-20 bg-white dark:bg-[#111118] border-y border-gray-100 dark:border-[#1e1e2e] px-4 transition-colors duration-300"
     >
       <div className="max-w-7xl mx-auto">
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-y-12 lg:gap-y-0">

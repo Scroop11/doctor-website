@@ -1,22 +1,22 @@
 // src/data/content.js
 
 const doctorData = {
-  doctorName: "[Dr. Your Name]",
-  specialty: "[Your Specialty / Consultant Designation]",
-  degree: "[Your Degrees, e.g., MBBS, FCPS]",
-  bmdcReg: "[BMDC Reg. No.]",
-  medicalCollege: "[Medical College Name]",
+  doctorName: "Doctor Jhatka",
+  specialty: "Medicine Specialist",
+  degree: "MBBS, FCPS (Medicine)",
+  bmdcReg: "A-12345",
+  medicalCollege: "Dhaka Medical College",
   
-  chamberName: "[Clinic Name]",
-  phone: "[+880 1XXX-XXXXXX]",
-  email: "[doctor@email.com]",
+  chamberName: "Modern Health Care Center",
+  phone: "+880 1712-345678",
+  email: "dr.sabbir@healthcare.com",
   
   // Placeholder images for development
-  heroImage: "https://placehold.co/600x400?text=Doctor+Hero+Image", 
-  aboutImage: "https://placehold.co/600x400?text=Professional+Photo",
+  heroImage: "https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?q=80&w=1470&auto=format&fit=crop", 
+  aboutImage: "https://images.unsplash.com/photo-1537368910025-700350fe46c7?q=80&w=1470&auto=format&fit=crop",
   
-  experience: "[X+ Years of Experience]",
-  availableDays: "[Days and Timings, e.g., Sunday - Thursday (5:00 PM - 9:00 PM)]",
+  experience: "15+ Years",
+  availableDays: "Sunday - Thursday (5:00 PM - 9:00 PM)",
 
   // Stats for components
   patients: "5000+",

@@ -26,7 +26,7 @@ const Hero = () => {
   };
 
   return (
-    <section className="min-h-screen bg-[#0a0a0f] flex items-center pt-24 lg:pt-0 px-4 sm:px-6 lg:px-8">
+    <section className="min-h-screen bg-white dark:bg-[#0a0a0f] flex items-center pt-24 lg:pt-0 px-4 sm:px-6 lg:px-8 transition-colors duration-300">
       <div className="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
         
         {/* Left Side Content */}
@@ -45,21 +45,21 @@ const Hero = () => {
           </motion.div>
 
           <div className="space-y-2">
-            <motion.h1 className="text-5xl md:text-7xl font-heading font-bold text-white leading-tight">
+            <motion.h1 className="text-5xl md:text-7xl font-heading font-bold text-[#0a0a0f] dark:text-white leading-tight">
               <motion.span variants={wordVariants} className="block">{t.hero.title1}</motion.span>
               <motion.span variants={wordVariants} className="block text-[#2dd4bf]">{t.hero.title2}</motion.span>
               <motion.span variants={wordVariants} className="block">{t.hero.title3}</motion.span>
             </motion.h1>
           </div>
 
-          <motion.p variants={itemVariants} className="text-[#94a3b8] text-lg md:text-xl max-w-lg leading-relaxed">
+          <motion.p variants={itemVariants} className="text-[#4b5563] dark:text-[#94a3b8] text-lg md:text-xl max-w-lg leading-relaxed">
             {doctorData.experience} {t.hero.description}
           </motion.p>
 
           <motion.div variants={itemVariants} className="flex flex-wrap gap-4">
             <a 
               href="#appointment"
-              className="bg-[#2dd4bf] text-[#0a0a0f] px-8 py-4 rounded-full font-bold hover:scale-105 transition-transform flex items-center gap-2"
+              className="bg-[#2dd4bf] text-[#0a0a0f] px-8 py-4 rounded-full font-bold hover:scale-105 transition-transform flex items-center gap-2 shadow-lg shadow-[#2dd4bf]/20"
             >
               {t.hero.bookButton} <span className="text-xl">→</span>
             </a>
@@ -72,17 +72,17 @@ const Hero = () => {
           </motion.div>
 
           <motion.div variants={itemVariants} className="flex gap-6 pt-4">
-            <div className="border border-[#1e1e2e] rounded-xl p-4 bg-[#111118]">
-              <div className="text-2xl font-bold text-white">{doctorData.patients}</div>
-              <div className="text-xs text-[#94a3b8] uppercase tracking-wider">{t.hero.patients}</div>
+            <div className="border border-gray-200 dark:border-[#1e1e2e] rounded-xl p-4 bg-gray-50 dark:bg-[#111118]">
+              <div className="text-2xl font-bold text-[#0a0a0f] dark:text-white">{doctorData.patients}</div>
+              <div className="text-xs text-[#4b5563] dark:text-[#94a3b8] uppercase tracking-wider">{t.hero.patients}</div>
             </div>
-            <div className="border border-[#1e1e2e] rounded-xl p-4 bg-[#111118]">
-              <div className="text-2xl font-bold text-white">{doctorData.experience.split(' ')[0]}</div>
-              <div className="text-xs text-[#94a3b8] uppercase tracking-wider">{t.hero.yearsExp}</div>
+            <div className="border border-gray-200 dark:border-[#1e1e2e] rounded-xl p-4 bg-gray-50 dark:bg-[#111118]">
+              <div className="text-2xl font-bold text-[#0a0a0f] dark:text-white">{doctorData.experience.split(' ')[0]}</div>
+              <div className="text-xs text-[#4b5563] dark:text-[#94a3b8] uppercase tracking-wider">{t.hero.yearsExp}</div>
             </div>
-            <div className="border border-[#1e1e2e] rounded-xl p-4 bg-[#111118]">
-              <div className="text-2xl font-bold text-white">{doctorData.satisfaction}</div>
-              <div className="text-xs text-[#94a3b8] uppercase tracking-wider">{t.hero.satisfaction}</div>
+            <div className="border border-gray-200 dark:border-[#1e1e2e] rounded-xl p-4 bg-gray-50 dark:bg-[#111118]">
+              <div className="text-2xl font-bold text-[#0a0a0f] dark:text-white">{doctorData.satisfaction}</div>
+              <div className="text-xs text-[#4b5563] dark:text-[#94a3b8] uppercase tracking-wider">{t.hero.satisfaction}</div>
             </div>
           </motion.div>
         </motion.div>
@@ -103,7 +103,7 @@ const Hero = () => {
               <img 
                 src={doctorData.heroImage} 
                 alt={t.doctor.name}
-                className="w-full max-w-[450px] md:max-w-[500px] h-auto object-cover rounded-3xl"
+                className="w-full max-w-[450px] md:max-w-[500px] h-auto object-cover rounded-3xl shadow-2xl"
               />
             </motion.div>
 
@@ -112,7 +112,7 @@ const Hero = () => {
               initial={{ x: 50, opacity: 0 }}
               animate={{ x: 0, opacity: 1 }}
               transition={{ delay: 1, duration: 0.5 }}
-              className="absolute -top-6 -right-6 md:right-0 bg-[#16161f] border border-[#1e1e2e] rounded-xl px-5 py-3 text-sm text-white shadow-2xl flex items-center gap-2"
+              className="absolute -top-6 -right-6 md:right-0 bg-gray-50 dark:bg-[#16161f] border border-gray-200 dark:border-[#1e1e2e] rounded-xl px-5 py-3 text-sm text-[#0a0a0f] dark:text-white shadow-2xl flex items-center gap-2"
             >
               <span className="text-lg">⭐</span> {t.hero.topRated}
             </motion.div>
@@ -122,7 +122,7 @@ const Hero = () => {
               initial={{ x: -50, opacity: 0 }}
               animate={{ x: 0, opacity: 1 }}
               transition={{ delay: 1.2, duration: 0.5 }}
-              className="absolute -bottom-6 -left-6 md:left-0 bg-[#16161f] border border-[#1e1e2e] rounded-xl px-5 py-3 text-sm text-white shadow-2xl flex items-center gap-2"
+              className="absolute -bottom-6 -left-6 md:left-0 bg-gray-50 dark:bg-[#16161f] border border-gray-200 dark:border-[#1e1e2e] rounded-xl px-5 py-3 text-sm text-[#0a0a0f] dark:text-white shadow-2xl flex items-center gap-2"
             >
               <span className="text-[#2dd4bf]">✅</span> {t.hero.bmdcVerified}
             </motion.div>

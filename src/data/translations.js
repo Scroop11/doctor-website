@@ -8,14 +8,24 @@ export const translations = {
       services: "Services",
       appointment: "Appointment",
       contact: "Contact",
-      bookNow: "Book Now"
+      bookNow: "Book Now",
+      login: "Login",
+      logout: "Logout",
+      dashboard: "Dashboard",
+      patientLogin: "Patient Login",
+      patientLoginSubtitle: "Access your prescriptions and health records",
+      patientId: "Patient ID",
+      testId: "For testing, use ID:",
+      idPlaceholder: "e.g. P-12345",
+      english: "English",
+      bengali: "Bengali"
     },
     doctor: {
-      name: "[Dr. Your Name]",
-      specialty: "[Medicine Specialist]",
-      degree: "[MBBS, FCPS]",
-      medicalCollege: "[Medical College Name]",
-      chamber: "[Clinic Name]",
+      name: "Doctor Jhatka",
+      specialty: "Medicine Specialist",
+      degree: "MBBS, FCPS (Medicine)",
+      medicalCollege: "Dhaka Medical College",
+      chamber: "Modern Health Care Center",
       availableDays: "Sunday - Thursday (5:00 PM - 9:00 PM)"
     },
     ticker: "MBBS · Medicine Specialist · FCPS (Medicine) · 15+ Years Experience · 5000+ Patients Treated · Dhaka Bangladesh · Available Online & In-Person · Book Today · BMDC Verified ·",
@@ -112,17 +122,21 @@ export const translations = {
         subtitle: "Fill out the form below and my assistant will confirm your slot within 2 hours.",
         fullName: "Full Name",
         phone: "Phone Number",
+        email: "Email Address",
         date: "Preferred Date",
         message: "Message (Optional)",
         submitting: "Submitting...",
-        right: "Confirm Appointment",
+        submit: "Confirm Appointment",
         success: "Success! We will contact you soon.",
         hours: "Hours",
         type: "Appointment Type",
+        inPerson: "In-Person",
+        online: "Online Consultation",
         time: "Preferred Time",
         required: "Required",
         invalidPhone: "Invalid number",
-        invalidEmail: "Invalid email"
+        invalidEmail: "Invalid email",
+        timeSlots: ["5:00 PM", "6:00 PM", "7:00 PM", "8:00 PM", "9:00 PM"]
         },
         prescription: {
         nav: "Prescriptions",
@@ -150,7 +164,7 @@ export const translations = {
         subtitle: "Trusted by thousands of patients across Bangladesh",
         items: [
             {
-              quote: "Dr. [Name] diagnosed my condition accurately when other doctors could not. His patience and expertise is truly remarkable. I am so grateful.",
+              quote: "Doctor Jhatka diagnosed my condition accurately when other doctors could not. His patience and expertise is truly remarkable. I am so grateful.",
               name: "Rahim Ahmed",
               city: "Dhaka"
             },
@@ -182,6 +196,32 @@ export const translations = {
         bmdc: "BMDC Registered Physician —",
         member: "Member — Bangladesh Society of Internal Medicine",
         download: "Download CV"
+    },
+    dashboard: {
+      welcome: "Welcome",
+      overview: "Overview",
+      myPrescriptions: "My Prescriptions",
+      appointments: "Appointments",
+      profile: "Profile Settings",
+      stats: {
+        visits: "Total Visits",
+        prescriptions: "Prescriptions",
+        nextAppt: "Next Appt"
+      },
+      recentPrescriptions: "Recent Prescriptions",
+      viewAll: "View All",
+      generalCheckup: "General Checkup Prescription",
+      bmdcTitle: "BMDC Verified",
+      bmdcDesc: "Your health records are secure and verified by official medical boards.",
+      viewSecurity: "View Security",
+      support: "Support",
+      supportDesc: "Need help with your reports or appointments?",
+      contactAssistant: "Contact Assistant",
+      accessDesc: "Access all your digital prescriptions and medical advice in one secure place.",
+      size: "Size",
+      date: "Date",
+      lightMode: "Light Mode",
+      darkMode: "Dark Mode"
     }
   },
   bn: {
@@ -191,14 +231,24 @@ export const translations = {
       services: "সেবাসমূহ",
       appointment: "অ্যাপয়েন্টমেন্ট",
       contact: "যোগাযোগ",
-      bookNow: "বুক করুন"
+      bookNow: "বুক করুন",
+      login: "লগইন",
+      logout: "লগআউট",
+      dashboard: "ড্যাশবোর্ড",
+      patientLogin: "পেশেন্ট লগইন",
+      patientLoginSubtitle: "আপনার প্রেসক্রিপশন এবং স্বাস্থ্য রেকর্ড অ্যাক্সেস করুন",
+      patientId: "পেশেন্ট আইডি",
+      testId: "টেস্ট করার জন্য এই আইডি ব্যবহার করুন:",
+      idPlaceholder: "যেমন: P-12345",
+      english: "ইংরেজি",
+      bengali: "বাংলা"
     },
     doctor: {
-      name: "[ডাঃ আপনার নাম]",
-      specialty: "[মেডিসিন বিশেষজ্ঞ]",
-      degree: "[এমবিবিএস, এফসিপিএস]",
-      medicalCollege: "[মেডিকেল কলেজের নাম]",
-      chamber: "[ক্লিনিকের নাম]",
+      name: "ডাক্তার ঝটকা",
+      specialty: "মেডিসিন বিশেষজ্ঞ",
+      degree: "এমবিবিএস, এফসিপিএস (মেডিসিন)",
+      medicalCollege: "ঢাকা মেডিকেল কলেজ",
+      chamber: "মডার্ন হেলথ কেয়ার সেন্টার",
       availableDays: "রবিবার - বৃহস্পতিবার (বিকাল ৫:০০ - রাত ৯:০০)"
     },
     ticker: "এমবিবিএস · মেডিসিন বিশেষজ্ঞ · এফসিপিএস (মেডিসিন) · ১৫+ বছরের অভিজ্ঞতা · ৫০০০+ রোগী দেখেছেন · ঢাকা বাংলাদেশ · অনলাইন ও সরাসরি পরামর্শ · আজই বুক করুন · BMDC ভেরিফাইড ·",
@@ -234,7 +284,7 @@ export const translations = {
       },
       respiratory: {
         title: "শ্বাসযন্ত্রের রোগ",
-        desc: "অ্যাজমা, সিওপিডি, ব্রঙ্কাইটিস, নিউমোনিয়া এবং অন্যান্য ফুসফুসের অবস্থার রোগ নির্ণয় এবং চিকিৎসা।"
+        desc: "অ্যাজমা, সিওপিডি, ব্রঙ্কাইটিস, নিউমোনিয়া এবং অন্যান্য ফুসভুসের অবস্থার রোগ নির্ণয় এবং চিকিৎসা।"
       },
       gastro: {
         title: "গ্যাস্ট্রোএন্টারোলজি",
@@ -295,17 +345,21 @@ export const translations = {
         subtitle: "নিচের ফর্মটি পূরণ করুন এবং আমার সহকারী ২ ঘন্টার মধ্যে আপনার স্লট নিশ্চিত করবেন।",
         fullName: "পুরো নাম",
         phone: "ফোন নম্বর",
+        email: "ইমেল ঠিকানা",
         date: "পছন্দের তারিখ",
         message: "বার্তা (ঐচ্ছিক)",
         submitting: "জমা দেওয়া হচ্ছে...",
         submit: "অ্যাপয়েন্টমেন্ট নিশ্চিত করুন",
         success: "সফল! আমরা শীঘ্রই আপনার সাথে যোগাযোগ করব।",
-        hours: "সময়",
+        hours: "সময়",
         type: "অ্যাপয়েন্টমেন্টের ধরন",
-        time: "পছন্দের সময়",
-        required: "প্রয়োজন",
+        inPerson: "সরাসরি",
+        online: "অনলাইন পরামর্শ",
+        time: "পছন্দের সময়",
+        required: "প্রয়োজন",
         invalidPhone: "ভুল নম্বর",
-        invalidEmail: "ভুল ইমেল"
+        invalidEmail: "ভুল ইমেল",
+        timeSlots: ["৫:০০ PM", "৬:০০ PM", "৭:০০ PM", "৮:০০ PM", "৯:০০ PM"]
     },
     prescription: {
       nav: "প্রেসক্রিপশন",
@@ -333,7 +387,7 @@ export const translations = {
         subtitle: "বাংলাদেশ জুড়ে হাজার হাজার রোগীর দ্বারা বিশ্বস্ত",
         items: [
             {
-              quote: "ডাক্তার [নাম] আমার অবস্থা সঠিকভাবে নির্ণয় করেছেন যখন অন্য ডাক্তাররা পারছিলেন না। তার ধৈর্য এবং দক্ষতা সত্যিই অসাধারণ। আমি তার কাছে অনেক কৃতজ্ঞ।",
+              quote: "ডাক্তার ঝটকা আমার অবস্থা সঠিকভাবে নির্ণয় করেছেন যখন অন্য ডাক্তাররা পারছিলেন না। তার ধৈর্য এবং দক্ষতা সত্যিই অসাধারণ। আমি তার কাছে অনেক কৃতজ্ঞ।",
               name: "রহিম আহমেদ",
               city: "ঢাকা"
             },
@@ -365,6 +419,32 @@ export const translations = {
         bmdc: "BMDC নিবন্ধিত চিকিৎসক —",
         member: "সদস্য — বাংলাদেশ সোসাইটি অফ ইন্টারনাল মেডিসিন",
         download: "সিভি ডাউনলোড করুন"
+    },
+    dashboard: {
+      welcome: "স্বাগতম",
+      overview: "সারসংক্ষেপ",
+      myPrescriptions: "আমার প্রেসক্রিপশন",
+      appointments: "অ্যাপয়েন্টমেন্ট",
+      profile: "প্রোফাইল সেটিংস",
+      stats: {
+        visits: "মোট ভিজিট",
+        prescriptions: "প্রেসক্রিপশন",
+        nextAppt: "পরবর্তী অ্যাপয়েন্টমেন্ট"
+      },
+      recentPrescriptions: "সাম্প্রতিক প্রেসক্রিপশন",
+      viewAll: "সবগুলো দেখুন",
+      generalCheckup: "সাধারণ চেকআপ প্রেসক্রিপশন",
+      bmdcTitle: "BMDC ভেরিফাইড",
+      bmdcDesc: "আপনার স্বাস্থ্য রেকর্ড সুরক্ষিত এবং অফিসিয়াল মেডিকেল বোর্ড দ্বারা যাচাইকৃত।",
+      viewSecurity: "নিরাপত্তা দেখুন",
+      support: "সহায়তা",
+      supportDesc: "আপনার রিপোর্ট বা অ্যাপয়েন্টমেন্টের জন্য সাহায্য প্রয়োজন?",
+      contactAssistant: "সহকারীর সাথে যোগাযোগ করুন",
+      accessDesc: "আপনার সমস্ত ডিজিটাল প্রেসক্রিপশন এবং চিকিৎসা পরামর্শ এক নিরাপদ স্থানে অ্যাক্সেস করুন।",
+      size: "সাইজ",
+      date: "তারিখ",
+      lightMode: "লাইট মোড",
+      darkMode: "ডার্ক মোড"
     }
   }
 };

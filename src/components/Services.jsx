@@ -57,16 +57,16 @@ const Services = () => {
   };
 
   return (
-    <section id="services" className="py-24 px-4 sm:px-6 lg:px-8 bg-secondary">
+    <section id="services" className="py-24 px-4 sm:px-6 lg:px-8 bg-white dark:bg-secondary transition-colors duration-300">
       <div ref={sectionRef} className="max-w-7xl mx-auto section-fade">
         <div className="text-center space-y-4 mb-16">
           <span className="text-[#2dd4bf] text-sm font-bold uppercase tracking-[0.2em]">
             {t.services.badge}
           </span>
-          <h2 className="text-4xl md:text-5xl font-heading font-bold text-white">
+          <h2 className="text-4xl md:text-5xl font-heading font-bold text-[#0a0a0f] dark:text-white">
             {t.services.title}
           </h2>
-          <p className="text-[#94a3b8] max-w-2xl mx-auto text-lg">
+          <p className="text-[#4b5563] dark:text-[#94a3b8] max-w-2xl mx-auto text-lg">
             {t.services.subtitle}
           </p>
         </div>
@@ -82,15 +82,15 @@ const Services = () => {
             <motion.div
               key={index}
               variants={cardVariants}
-              className="bg-[#16161f] border border-[#1e1e2e] rounded-2xl p-8 hover:border-[#2dd4bf] hover:shadow-[0_0_20px_rgba(45,212,191,0.15)] hover:-translate-y-1 transition-all duration-300 group"
+              className="bg-gray-50 dark:bg-[#16161f] border border-gray-100 dark:border-[#1e1e2e] rounded-2xl p-8 hover:border-[#2dd4bf] hover:shadow-[0_0_20px_rgba(45,212,191,0.15)] hover:-translate-y-1 transition-all duration-300 group shadow-sm dark:shadow-none"
             >
-              <div className="bg-[#0a0a0f] p-4 rounded-xl w-fit text-[#2dd4bf] mb-6 group-hover:scale-110 transition-transform duration-300">
+              <div className="bg-white dark:bg-[#0a0a0f] p-4 rounded-xl w-fit text-[#2dd4bf] mb-6 group-hover:scale-110 transition-transform duration-300 border border-gray-100 dark:border-none">
                 {React.cloneElement(service.icon, { size: 24 })}
               </div>
-              <h3 className="text-xl font-bold text-white mb-4">
+              <h3 className="text-xl font-bold text-[#0a0a0f] dark:text-white mb-4">
                 {service.title}
               </h3>
-              <p className="text-[#94a3b8] leading-relaxed">
+              <p className="text-[#4b5563] dark:text-[#94a3b8] leading-relaxed">
                 {service.desc}
               </p>
             </motion.div>
