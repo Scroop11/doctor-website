@@ -18,7 +18,8 @@ export const translations = {
       testId: "For testing, use ID:",
       idPlaceholder: "e.g. P-12345",
       english: "English",
-      bengali: "Bengali"
+      bengali: "Bengali",
+      exit: "Exit"
     },
     doctor: {
       name: "Doctor Jhatka",
@@ -241,7 +242,8 @@ export const translations = {
       testId: "টেস্ট করার জন্য এই আইডি ব্যবহার করুন:",
       idPlaceholder: "যেমন: P-12345",
       english: "ইংরেজি",
-      bengali: "বাংলা"
+      bengali: "বাংলা",
+      exit: "বাহির"
     },
     doctor: {
       name: "ডাক্তার ঝটকা",

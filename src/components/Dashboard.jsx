@@ -135,6 +135,13 @@ const Dashboard = () => {
       </div>
       
       <div className="flex items-center gap-4">
+        <button 
+          onClick={() => navigate('/')}
+          className="flex items-center gap-2 px-3 sm:px-4 py-2 rounded-xl text-[#4b5563] dark:text-[#94a3b8] hover:bg-gray-100 dark:hover:bg-white/5 transition-all font-bold text-sm border border-gray-100 dark:border-[#1e1e2e]"
+        >
+          <X size={18} />
+          <span className="hidden xs:inline">{t.nav.exit}</span>
+        </button>
         <button className="hidden sm:block p-2 text-[#4b5563] dark:text-[#94a3b8] hover:text-[#0a0a0f] dark:hover:text-white transition-colors relative">
           <Bell size={20} />
           <span className="absolute top-1.5 right-1.5 w-2 h-2 bg-red-500 rounded-full border-2 border-white dark:border-[#0a0a0f]"></span>
