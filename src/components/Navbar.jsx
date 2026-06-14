@@ -23,6 +23,17 @@ const Navbar = () => {
     setMounted(true);
   }, []);
 
+  useEffect(() => {
+    if (isMobileMenuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+    return () => {
+      document.body.style.overflow = 'unset';
+    };
+  }, [isMobileMenuOpen]);
+
   const { scrollYProgress } = useScroll();
   const scaleX = useSpring(scrollYProgress, {
     stiffness: 100,
@@ -106,7 +117,10 @@ const Navbar = () => {
               initial={{ x: -20, opacity: 0 }}
               animate={{ x: 0, opacity: 1 }}
               className="text-[#2dd4bf] font-heading text-xl md:text-2xl font-bold cursor-pointer"
-              onClick={() => navigate('/')}
+              onClick={() => {
+                navigate('/');
+                setIsMobileMenuOpen(false);
+              }}
             >
               {t.doctor.name}
             </motion.div>
@@ -179,18 +193,41 @@ const Navbar = () => {
             </motion.div>
 
             {/* Mobile Menu Button */}
-            <div className="md:hidden flex items-center gap-2">
+            <div className="md:hidden flex items-center gap-4">
               <button
                 onClick={toggleTheme}
-                className="p-2 text-[#4b5563] dark:text-[#94a3b8]"
+                className="p-2 text-[#4b5563] dark:text-[#94a3b8] hover:bg-gray-100 dark:hover:bg-white/5 rounded-lg transition-colors"
+                aria-label="Toggle Theme"
               >
                 {theme === 'dark' ? <Sun size={22} /> : <Moon size={22} />}
               </button>
+              
               <button
-                onClick={() => setIsMobileMenuOpen(true)}
-                className="text-[#0a0a0f] dark:text-white p-2"
+                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                className="relative z-[70] w-10 h-10 flex flex-col items-center justify-center space-y-1.5 focus:outline-none"
+                aria-label="Toggle Menu"
               >
-                <Menu size={28} />
+                <motion.span
+                  animate={{
+                    rotate: isMobileMenuOpen ? 45 : 0,
+                    y: isMobileMenuOpen ? 8 : 0,
+                  }}
+                  className="w-7 h-0.5 bg-[#0a0a0f] dark:bg-white rounded-full block"
+                />
+                <motion.span
+                  animate={{
+                    opacity: isMobileMenuOpen ? 0 : 1,
+                    x: isMobileMenuOpen ? 20 : 0,
+                  }}
+                  className="w-7 h-0.5 bg-[#0a0a0f] dark:bg-white rounded-full block"
+                />
+                <motion.span
+                  animate={{
+                    rotate: isMobileMenuOpen ? -45 : 0,
+                    y: isMobileMenuOpen ? -8 : 0,
+                  }}
+                  className="w-7 h-0.5 bg-[#0a0a0f] dark:bg-white rounded-full block"
+                />
               </button>
             </div>
           </div>
@@ -200,80 +237,76 @@ const Navbar = () => {
         <AnimatePresence>
           {isMobileMenuOpen && (
             <motion.div
-              initial={{ opacity: 0, x: '100%' }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: '100%' }}
-              transition={{ type: 'tween', duration: 0.3 }}
-              className="fixed inset-0 z-[60] bg-white dark:bg-[#0a0a0f] flex flex-col items-center justify-center"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.2 }}
+              className="fixed inset-0 z-[60] bg-white/95 dark:bg-[#0a0a0f]/95 backdrop-blur-xl md:hidden"
             >
-              <button
-                onClick={() => setIsMobileMenuOpen(false)}
-                className="absolute top-6 right-6 text-[#0a0a0f] dark:text-white p-2"
-              >
-                <X size={32} />
-              </button>
-              
-              <div className="flex flex-col items-center space-y-8">
-                {navLinks.map((link) => (
-                  <a
-                    key={link.name}
-                    href={link.href}
-                    onClick={(e) => handleNavLinkClick(e, link)}
-                    className="text-2xl text-[#4b5563] dark:text-[#94a3b8] hover:text-[#2dd4bf] transition-colors font-semibold"
-                  >
-                    {link.name}
-                  </a>
-                ))}
-
-                <div className="flex gap-4">
-                  <button
-                    onClick={toggleLanguage}
-                    className="flex items-center gap-2 text-[#4b5563] dark:text-[#94a3b8] border border-gray-200 dark:border-[#1e1e2e] px-4 py-2 rounded-xl font-bold"
-                  >
-                    <Languages size={20} />
-                    {language === 'en' ? t.nav.bengali : t.nav.english}
-                  </button>
-                  <button
-                    onClick={toggleTheme}
-                    aria-label="Toggle Theme"
-                    className="flex items-center gap-2 text-[#4b5563] dark:text-[#94a3b8] border border-gray-200 dark:border-[#1e1e2e] px-4 py-2 rounded-xl font-bold hover:bg-gray-50 dark:hover:bg-white/5 transition-all focus:outline-none focus:ring-2 focus:ring-[#2dd4bf]"
-                  >
-                    <div className="relative w-5 h-5 flex items-center justify-center overflow-hidden">
-                      <AnimatePresence mode="wait" initial={false}>
-                        <motion.div
-                          key={theme}
-                          initial={{ y: -10, opacity: 0, rotate: -45 }}
-                          animate={{ y: 0, opacity: 1, rotate: 0 }}
-                          exit={{ y: 10, opacity: 0, rotate: 45 }}
-                          transition={{ duration: 0.2 }}
-                        >
-                          {theme === 'dark' ? <Sun size={20} /> : <Moon size={20} />}
-                        </motion.div>
-                      </AnimatePresence>
-                    </div>
-                    {theme === 'dark' ? t.dashboard.lightMode : t.dashboard.darkMode}
-                  </button>
-                </div>
-
-                {isLoggedIn && (
-                  <button
-                    onClick={() => {
-                      logout();
-                      setIsMobileMenuOpen(false);
-                    }}
-                    className="text-2xl text-red-500 font-semibold"
-                  >
-                    {t.nav.logout}
-                  </button>
-                )}
-
-                <a
-                  href="#appointment"
-                  onClick={() => setIsMobileMenuOpen(false)}
-                  className="bg-[#2dd4bf] text-[#0a0a0f] px-10 py-4 rounded-full font-bold text-xl shadow-xl shadow-[#2dd4bf]/20"
+              <div className="flex flex-col items-center justify-center h-full px-6 text-center">
+                <motion.div
+                  variants={containerVariants}
+                  initial="hidden"
+                  animate="visible"
+                  className="flex flex-col items-center space-y-6 w-full max-w-sm"
                 >
-                  {t.nav.bookNow}
-                </a>
+                  {navLinks.map((link) => (
+                    <motion.a
+                      key={link.name}
+                      href={link.href}
+                      onClick={(e) => handleNavLinkClick(e, link)}
+                      variants={itemVariants}
+                      className="text-2xl font-bold text-[#4b5563] dark:text-[#94a3b8] hover:text-[#2dd4bf] dark:hover:text-white transition-all transform hover:scale-105"
+                    >
+                      {link.name}
+                    </motion.a>
+                  ))}
+
+                  <motion.div variants={itemVariants} className="w-full h-px bg-gray-200 dark:bg-white/10 my-4" />
+
+                  <motion.div variants={itemVariants} className="flex flex-col gap-4 w-full">
+                    <button
+                      onClick={toggleLanguage}
+                      className="flex items-center justify-center gap-3 w-full py-4 px-6 rounded-2xl bg-gray-50 dark:bg-white/5 border border-gray-100 dark:border-white/10 text-[#4b5563] dark:text-[#94a3b8] font-bold text-lg hover:border-[#2dd4bf]/50 transition-all"
+                    >
+                      <Languages size={22} className="text-[#2dd4bf]" />
+                      {language === 'en' ? t.nav.bengali : t.nav.english}
+                    </button>
+
+                    {isLoggedIn ? (
+                      <button
+                        onClick={() => {
+                          logout();
+                          setIsMobileMenuOpen(false);
+                        }}
+                        className="flex items-center justify-center gap-3 w-full py-4 px-6 rounded-2xl bg-red-50 dark:bg-red-500/10 border border-red-100 dark:border-red-500/20 text-red-600 dark:text-red-400 font-bold text-lg"
+                      >
+                        <LogOut size={22} />
+                        {t.nav.logout}
+                      </button>
+                    ) : (
+                      <button
+                        onClick={() => {
+                          setIsLoginModalOpen(true);
+                          setIsMobileMenuOpen(false);
+                        }}
+                        className="flex items-center justify-center gap-3 w-full py-4 px-6 rounded-2xl bg-[#2dd4bf]/10 border border-[#2dd4bf]/20 text-[#2dd4bf] font-bold text-lg"
+                      >
+                        <LogIn size={22} />
+                        {t.nav.login}
+                      </button>
+                    )}
+                  </motion.div>
+
+                  <motion.a
+                    variants={itemVariants}
+                    href="#appointment"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                    className="w-full bg-[#2dd4bf] text-[#0a0a0f] py-5 rounded-2xl font-black text-xl shadow-xl shadow-[#2dd4bf]/20 active:scale-95 transition-all mt-4"
+                  >
+                    {t.nav.bookNow}
+                  </motion.a>
+                </motion.div>
               </div>
             </motion.div>
           )}
